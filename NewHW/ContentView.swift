@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var text = ""
+    @State var loginText = ""
+    @State var passText = ""
     
     var body: some View {
         TabView{
-            Text("Profile")
+            VStack(spacing: 30) {
+            Text("Текс для заголовка")
+                .forTitle()
+            Text("Основной текс")
+                .forMain()
+            }
                 .tabItem {
                     Image(systemName: "house")
                     Text("Feel")
@@ -24,11 +30,11 @@ struct ContentView: View {
                     .padding(.top, 120)
                     .padding(.bottom, 100)
                 VStack(spacing: 0) {
-                    TextField("Username", text: $text)
+                    TextField("Username", text: $loginText)
                         .frame(width: 300, height: 50, alignment: .center)
                     Divider().frame(width: 300, height: 1, alignment: .center)
                         .border(.gray)
-                    TextField("Password", text: $text)
+                    SecureField("Password", text: $passText)
                         .frame(width: 300, height: 50, alignment: .center)
                 }
                 .cornerRadius(10)
@@ -69,19 +75,6 @@ struct ContentView: View {
     }
 }
 
-struct TitleModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.largeTitle)
-            .background(.gray)
-    }
-}
-
-struct MainModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        content.font(.system(size: 13, weight: .regular, design: .default))
-    }
-}
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()

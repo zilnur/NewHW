@@ -1,25 +1,25 @@
 import SwiftUI
 
-struct RoundCorner: Shape {
-    
-    // MARK: - PROPERTIES
-    
-    var cornerRadius: CGFloat
-    var maskedCorners: UIRectCorner
-    
-    
-    // MARK: - PATH
-    
-    func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: maskedCorners, cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
-        return Path(path.cgPath)
+struct TitleModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .background(.gray)
     }
 }
 
-// MARK: - PREVIEW
+struct MainModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content.font(.system(size: 16, weight: .regular, design: .default))
+    }
+}
 
-struct RoundCorner_Previews: PreviewProvider {
-    static var previews: some View {
-        RoundCorner(cornerRadius: 20, maskedCorners: .allCorners)
+extension View {
+    func forTitle() -> some View {
+        modifier(TitleModifier())
+    }
+    
+    func forMain() -> some View {
+        modifier(MainModifier())
     }
 }
