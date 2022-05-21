@@ -32,10 +32,12 @@ struct ContentView: View {
                 VStack(spacing: 0) {
                     TextField("Username", text: $loginText)
                         .frame(width: 300, height: 50, alignment: .center)
-                    Divider().frame(width: 300, height: 1, alignment: .center)
+                        .padding([.leading, .trailing], 6)
+                    Divider().frame(width: 312, height: 1, alignment: .center)
                         .border(.gray)
                     SecureField("Password", text: $passText)
                         .frame(width: 300, height: 50, alignment: .center)
+                        .padding([.leading, .trailing], 6)
                 }
                 .cornerRadius(10)
                 .overlay(RoundedRectangle(cornerRadius: 10)
